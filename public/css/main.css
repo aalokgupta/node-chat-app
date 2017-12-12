@@ -1,0 +1,58 @@
+.grid-layout{
+  display: grid;
+  grid-template-columns: 100px 500px 100px 500px;
+  grid-template-rows: 50px 50px 50px;
+}
+/*
+h1{
+  grid-template-rows:
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}*/
+.user-name{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.sent-message{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.send-button{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+.send-location{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.receive-message{
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  max-height: 200px;
+}
+
+.text-type{
+  width: 400px;
+  height: 50px;
+  text-align: left;
+}
+.btn{
+  width: 400px;
+  height: 50px;
+  font-size: 25px;
+  text-align: center;
+}

@@ -3,7 +3,7 @@ const http = require('http');
 const socketIO = require('socket.io');
 const path = require('path');
 const app = express();
-
+const {generateMessage, generateLocationMessage} = require('./utils/message');
 const publicPath = path.join(__dirname, '../public');
 const PORT =  process.env.PORT || 8080;
 
@@ -14,16 +14,10 @@ var io = socketIO(server);
 io.on('connection', (socket) => {
   console.log("new user is connected");
 
-  socket.emit("newMessage", {
-    from: "Admin",
-    text: "Welcome to chat app"
-  });
+  socket.emit("newMessage", generateMessage('Admin', 'Welcome to chat app'));
 
-  socket.broadcast.emit('newMessage', {
-    from: 'Admin',
-    text: "New user joined",
-    createdAt: new Date().getTime() 
-  });
+  // broadcast message to all connected to all user except the sender
+  socket.broadcast.emit('newMessage', generateMessage('admin', "New user joined"));
 
   // socket.emit('newMessage', {
   //   from: "aalok",
@@ -31,13 +25,19 @@ io.on('connection', (socket) => {
   //   createdAt: new Date().toString()
   // });
 
-  socket.on('createMessage', function(message){
+  socket.on('createMessage', function(message, callback){
     console.log("createMessage "+JSON.stringify(message, undefined, 2));
-    io.emit('newMessage', {
-      from: message.from,
-      text: message.text,
-      createdAt: new Date().getTime()
-    })
+    //sent message to all user
+    io.emit('newMessage', generateMessage(message.from, message.text));
+    callback("message received from server");
+  });
+
+  socket.on('geoLocation', function(message, callback){
+    console.log("message received from server "+JSON.stringify(message, undefined, 2));
+    // console.log("message received from server ";
+    var location = message.coords.latitude + ', ' + message.coords.longitude;
+    io.emit('locationMessage', generateLocationMessage(message.from, message.coords.latitude, message.coords.longitude));
+    callback('location msg received from server');
   });
 
   socket.on('disconnect', (socket) => {
