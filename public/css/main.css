@@ -1,58 +1,85 @@
 .grid-layout{
   display: grid;
-  grid-template-columns: 100px 500px 100px 500px;
-  grid-template-rows: 50px 50px 50px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 100px  750px 150px;
+  grid-row-gap: 1px;
+  grid-column-gap: 1px;
 }
-/*
-h1{
-  grid-template-rows:
-  grid-column-start: 2;
-  grid-column-end: 3;
+
+.header{
+  grid-column-start: 1;
+  grid-column-end: 7;
   grid-row-start: 1;
   grid-row-end: 2;
-}*/
-.user-name{
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  background-color: #67e56d;
+  text-align: center;
+  font-size: 50px;
 }
-.sent-message{
+
+.user-list {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  background-color:#ccb5a1;
+  text-align: center;
+  font-size: 25px;
+  font-family: serif;
+}
+
+.receive-message {
   grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-end: 7;
   grid-row-start: 2;
   grid-row-end: 3;
+  background-color: #b8bab4;
+  grid-gap: 5px;
+  margin-left: 10px;
+}
+
+.footer {
+  grid-column-start: 2;
+  grid-column-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 50px 50px;
+  margin-left: 5px;
+  margin-top: 50px;
+  width: 100%;
+  /*background-color: #67e56d*/
+}
+
+.sent-message{
+  float: left;
 }
 
 .send-button{
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  float: left;
 }
 .send-location{
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
-.receive-message{
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  max-height: 200px;
+ float:left;
 }
 
 .text-type{
-  width: 400px;
-  height: 50px;
+  width: 800px;
+  height: 40px;
   text-align: left;
+  font-size: 25px;
 }
 .btn{
-  width: 400px;
-  height: 50px;
+  width: 300px;
+  height: 40px;
   font-size: 25px;
   text-align: center;
+  margin: 2px 2px 2px 5px;
+  background-color: #67e56d;
+}
+.li-message {
+    font-size: 25px;
+    font-style: normal;
+    font-family: serif;
+    font-weight: normal;
+    font-stretch: semi-expanded;
+    list-style-type: none;
 }

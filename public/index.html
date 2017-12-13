@@ -7,23 +7,29 @@
 </head>
 
 <body>
-  <h1>Welcome to chat app</h1>
+
   <div class = "grid-layout">
-    <div class = "user-name">
+    <div class = "header">Chat app</div>
+    <div class = "user-list">Online User</div>
+    <!-- <div class = "user-name">
       <input type = "text" placeholder = "your name plz" id = "text-user-name"/>
+    </div> -->
+    <div class = "receive-message">
+      <ol id = "ol-received-message"></ol>
+      <!-- <input type = "text" class = "text-type" id = "text-received-message"/> -->
+  </div>
+  <div class = "footer">
+    <div class = "sent-message">
+    <input type = "text" placeholder = "type your msg" class = "text-type" id = "text-sent-message" focused/>
+  </div>
+    <div class = "send-button">
+      <input type = "button" value = "Send message" class = "btn" id = "btn-send-message"/>
     </div>
-  <div class = "sent-message">
-    <input type = "text" placeholder = "type your msg" class = "text-type" id = "text-sent-message"/>
-  </div>
-  <div class = "send-button">
-    <input type = "button" value = "Send message" class = "btn" id = "btn-send-message"/>
-  </div>
-  <div class = "receive-message">
-    <ol id = "ol-received-message"></ol>
-    <!-- <input type = "text" class = "text-type" id = "text-received-message"/> -->
-  </div>
-  <div class = "send-location">
-    <input type = "button" value = "Send location" class = "btn" id = "btn-send-location"/>
+    <div class = "send-location">
+        <input type = "button" value = "Send location" class = "btn" id = "btn-send-location"/>
+    </div>
+
+
   </div>
 </div>
 

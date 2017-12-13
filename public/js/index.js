@@ -12,15 +12,16 @@ var socket = io();
   socket.on('newMessage', function(message){
     console.log("newMessage "+JSON.stringify(message, undefined, 2));
     var li = jQuery('<li class = "li-message"></li>');
-    li.text(`${message.from}: ${message.text}`)
+    li.text(`${message.from} ${message.createdAt} : ${message.text}`)
     jQuery('#ol-received-message').append(li);
   });
 
   socket.on('locationMessage', function(location){
     console.log("locationMessage "+JSON.stringify(location, undefined, 2));
-    var li = jQuery(`<li><a href = ${location.locationUrl}>my location</a></li>`);
+    var li = `<li class = "li-message">${location.from} ${location.createdAt}  <a href = ${location.locationUrl}>my location</a></li>`;
+    var li_attribute = jQuery(li);
     // li.text(`${message.from}: ${message.text}`)
-    jQuery('#ol-received-message').append(li);
+    jQuery('#ol-received-message').append(li_attribute);
   });
 
   jQuery('#btn-send-message').on('click', function(e){
