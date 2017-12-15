@@ -1,7 +1,7 @@
 .grid-layout{
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 100px  750px 150px;
+  grid-template-rows: 100px 780px 50px;
   grid-row-gap: 1px;
   grid-column-gap: 1px;
 }
@@ -37,6 +37,12 @@
   margin-left: 10px;
 }
 
+.ol-received-message{
+  height: 700px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 .footer {
   grid-column-start: 2;
   grid-column-end: 7;
@@ -44,9 +50,9 @@
   grid-row-end: 4;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 50px 50px;
-  margin-left: 5px;
-  margin-top: 50px;
+  margin-left: 10px;
   width: 100%;
+  margin-top: 5px;
   /*background-color: #67e56d*/
 }
 
@@ -62,10 +68,11 @@
 }
 
 .text-type{
-  width: 800px;
+  width: 850px;
   height: 40px;
   text-align: left;
   font-size: 25px;
+  border: 2px solid #ff0000;
 }
 .btn{
   width: 300px;
@@ -75,11 +82,20 @@
   margin: 2px 2px 2px 5px;
   background-color: #67e56d;
 }
-.li-message {
-    font-size: 25px;
-    font-style: normal;
-    font-family: serif;
-    font-weight: normal;
-    font-stretch: semi-expanded;
-    list-style-type: none;
+.message {
+  font-size: 25px;
+  font-style: normal;
+  font-family: serif;
+  font-weight: normal;
+  font-stretch: semi-expanded;
+  list-style-type: none;
+  margin-left: 5px;
+}
+.received-msg-header {
+  font-size: 20px;
+  font-style: normal;
+  font-family: serif;
+  font-weight: bold;
+  font-stretch: semi-expanded;
+  list-style-type: none;
 }

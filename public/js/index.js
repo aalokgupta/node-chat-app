@@ -9,19 +9,53 @@ var socket = io();
     console.log('disconnected from server');
   });
 
+  function scrolltoBottom() {
+
+    var ol = jQuery('#ol-received-message');
+    var newMessage = ol.children('li:last-child');
+    var clientHeight = ol.prop('clientHeight');
+
+    console.log("clientHeight = "+clientHeight);
+    var scrollTop =  ol.prop('scrollTop');
+    console.log("scrollTop = "+scrollTop);
+    var scrollHeight = ol.prop('scrollHeight');
+    console.log("scrollHeight = "+scrollHeight);
+
+    if(newMessage !== undefined) {
+      var newMessageHeight = newMessage.innerHeight();
+      console.log("newMessageHeight = "+newMessageHeight);
+      var lastMessageHeight = 5; //newMessageHeight.prev().innerHeight();
+      console.log("lastMessageHeight = "+lastMessageHeight);
+    }
+
+    if(clientHeight + scrollTop + 74 >= scrollHeight) {
+      console.log("should scroll");
+      ol.scrollTop(scrollHeight);
+    }
+  }
+
   socket.on('newMessage', function(message){
+    var formatedTime = moment(message.createdAt).format('h::mm a');
     console.log("newMessage "+JSON.stringify(message, undefined, 2));
-    var li = jQuery('<li class = "li-message"></li>');
-    li.text(`${message.from} ${message.createdAt} : ${message.text}`)
+    var li = jQuery('<li class = "li-message received-msg-header"></li>');
+    li.text(`${message.from} ${formatedTime}`);
     jQuery('#ol-received-message').append(li);
+    var li1 = jQuery('<li class = "li-message message"></li></br>');
+    li1.text(`${message.text}`);
+    jQuery('#ol-received-message').append(li1);
+    scrolltoBottom();
   });
 
   socket.on('locationMessage', function(location){
+    var formatedTime = moment(location.createdAt).format('h::mm a');
     console.log("locationMessage "+JSON.stringify(location, undefined, 2));
-    var li = `<li class = "li-message">${location.from} ${location.createdAt}  <a href = ${location.locationUrl}>my location</a></li>`;
+    var li = `<li class = "li-message received-msg-header ">${location.from} ${formatedTime}</li>`;
     var li_attribute = jQuery(li);
-    // li.text(`${message.from}: ${message.text}`)
     jQuery('#ol-received-message').append(li_attribute);
+    var li1 = `<li class = "li-message message"> <a href = ${location.locationUrl}>My Location</a></li>`;
+    var li_attribute1 = jQuery(li1);
+    jQuery('#ol-received-message').append(li_attribute1);
+    scrolltoBottom();
   });
 
   jQuery('#btn-send-message').on('click', function(e){
