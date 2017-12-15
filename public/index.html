@@ -1,41 +1,31 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="/css/main.css">
-  <script src = "/libs/jquery-3.2.1.min.js"></script>
+  <head>
+      <meta charset="utf-8">
+      <meta name = "viewport" content = "width=device-width, initial-scale=1, user-scalable=no">
+      <title>Chat | JoinChat </title>
+      <link rel="stylesheet" href="/css/main.css">
+      <script src = "/libs/jquery-3.2.1.min.js"></script>
 
-</head>
+  </head>
 
-<body>
+  <body class = "join-body">
+    <div class = "centre-form">
+      <form action = "/chat.html">
+        <div>
+        <div class = "join-chat-header"><label >Join Chat</label></div></br>
+        <div><label class = "label-username">UserName: </label></br>
+          <input type = "text" class = "text-username" placeholder="your name"/>
+        </div>
+      </br>
 
-  <div class = "grid-layout">
-    <div class = "header">Chat app</div>
-    <div class = "user-list">Online User</div>
-    <!-- <div class = "user-name">
-      <input type = "text" placeholder = "your name plz" id = "text-user-name"/>
-    </div> -->
-    <div class = "receive-message">
-        <div><ol id = "ol-received-message"  class = "ol-received-message"></ol></div>
+      <div><label class = "label-username">ChatRoom: </label> </br>
+        <input type = "text" class = "text-username" placeholder="chat room name"/>
       </div>
+    </br>
 
-      <!-- <input type = "text" class = "text-type" id = "text-received-message"/> -->
-  <div class = "footer">
-    <div class = "sent-message">
-    <input type = "text" placeholder = "type your msg" class = "text-type" id = "text-sent-message" focused/>
-  </div>
-    <div class = "send-button">
-      <input type = "button" value = "Send message" class = "btn" id = "btn-send-message"/>
-    </div>
-    <div class = "send-location">
-        <input type = "button" value = "Send location" class = "btn" id = "btn-send-location"/>
-    </div>
-
-
-  </div>
-</div>
-
-  <script src = "/socket.io/socket.io.js"></script>
-  <script src = "/js/index.js"></script>
-  <script src = "/js/moment.js"></script>
-</body>
+      <div><input type = "submit" class = "btn join-btn" value = "Join"/></div>
+    </form>
+      </div>
+  </body>
 </html>

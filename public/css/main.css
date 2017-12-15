@@ -11,7 +11,7 @@
   grid-column-end: 7;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: #67e56d;
+  background-color: #3d7ce2;
   text-align: center;
   font-size: 50px;
 }
@@ -32,7 +32,7 @@
   grid-column-end: 7;
   grid-row-start: 2;
   grid-row-end: 3;
-  background-color: #b8bab4;
+  /*background-color: #b8bab4;*/
   grid-gap: 5px;
   margin-left: 10px;
 }
@@ -72,15 +72,15 @@
   height: 40px;
   text-align: left;
   font-size: 25px;
-  border: 2px solid #ff0000;
+  border: 2px solid #3d7ce2
 }
 .btn{
   width: 300px;
-  height: 40px;
+  height: 42px;
   font-size: 25px;
   text-align: center;
-  margin: 2px 2px 2px 5px;
-  background-color: #67e56d;
+  margin-left: 5px;;
+  background-color: #3d7ce2;
 }
 .message {
   font-size: 25px;
@@ -98,4 +98,47 @@
   font-weight: bold;
   font-stretch: semi-expanded;
   list-style-type: none;
+}
+.join-body {
+    background-color: #3d7ce2;
+}
+.centre-form {
+    width: 350px;
+    height: 350px;
+    top: 30%;
+    left: 40%;
+    background-color: #e6e8dc;
+    position: absolute;
+    padding: 10px;
+    border-radius: 5px;
+    /*margin-left: 30%;
+    margin-top: 200px*/
+}
+
+.label-username{
+  font-size: 25px;
+  font-style: normal;
+  font-weight: bold;
+  font-family: serif;
+  margin-left: 20px;
+  font-size: 25px;
+  margin: 15px 5px 5px 15px;
+}
+.text-username {
+  width: 90%;
+  margin-left: 20px;
+  height: 40px;
+  border: 2px solid #000000;
+  font-size: 25px;
+  margin: 15px 5px 5px 15px;
+}
+
+.join-btn {
+  width: 95%;
+}
+
+.join-chat-header{
+  font-size: 30px;
+  text-align: center;
+  font-family: sans-serif;
 }
