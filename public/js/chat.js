@@ -1,8 +1,17 @@
 
 var socket = io();
+var username = null;
 
   socket.on('connect', function () {
-    console.log("connected");
+    var params = jQuery.deparam(window.location.search);
+    socket.emit('join', params, function(err) {
+      if(err) {
+        alert(err);
+        window.location.href = "/";
+      }
+      username = params.username;
+      console.log("params verified and user connected to server");
+    });
   });
 
   socket.on('disconnect', function () {
@@ -61,10 +70,10 @@ var socket = io();
   jQuery('#btn-send-message').on('click', function(e){
     console.log("send button click");
     var text = jQuery('#text-sent-message').val();
-    var username = jQuery('#text-user-name').val() || 'Anonymous';
+    var user = username || 'Anonymous';
     console.log(`text = ${text}`);
     socket.emit('createMessage', {
-      from: username,
+      from: user,
       text: text
     }, function(message) {
       console.log(`${message}`);
@@ -73,14 +82,14 @@ var socket = io();
 
   jQuery('#btn-send-location').on('click', function(e){
     console.log("send location btn clicked");
-    var username = jQuery('#text-user-name').val() || 'Anonymous';
+     var user = username || 'Anonymous';
     if("geolocation" in navigator){
       console.log("geolocation is avavilable in navigator");
         navigator.geolocation.getCurrentPosition(function(position){
           console.log("inside getCurrentPosition");
           // var locationMsg = ;
           console.log("location = "+JSON.stringify(position, undefined, 2));
-          socket.emit('geoLocation', {from: username,
+          socket.emit('geoLocation', {from: user,
                                       coords: {
                                                 latitude: position.coords.latitude,
                                                 longitude: position.coords.longitude
