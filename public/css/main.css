@@ -21,7 +21,7 @@
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 4;
-  background-color:#ccb5a1;
+  background-color: #6b6967; /*#f4e4a8; /*#47ef9e;*/
   text-align: center;
   font-size: 25px;
   font-family: serif;
@@ -32,7 +32,7 @@
   grid-column-end: 7;
   grid-row-start: 2;
   grid-row-end: 3;
-  /*background-color: #b8bab4;*/
+  background-color: #e0dad9;
   grid-gap: 5px;
   margin-left: 10px;
 }
@@ -64,6 +64,7 @@
   float: left;
 }
 .send-location{
+
  float:left;
 }
 
@@ -72,14 +73,19 @@
   height: 40px;
   text-align: left;
   font-size: 25px;
-  border: 2px solid #3d7ce2
+  border: 2px solid #3d7ce2;
+  /*width: 100%;*/
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 .btn{
   width: 300px;
   height: 42px;
   font-size: 25px;
   text-align: center;
-  margin-left: 5px;;
+  margin: 8px 0;
+  margin-left: 10px;
   background-color: #3d7ce2;
 }
 .message {
@@ -141,4 +147,25 @@
   font-size: 30px;
   text-align: center;
   font-family: sans-serif;
+}
+
+.li-user{
+  width: 150px;
+  height: 25px;
+  /*background-color: #f44e42;*/
+  /*border: 2px solid #ffffff;*/
+  text-align: left;
+  padding-left: 5px 2px;;
+  margin-top: 5px;
+  font-size: 20px;
+  font-style: normal;
+  font-family: sans-serif;
+}
+
+.ol-user{
+  width: 170px;
+  background-color: #ffffff;  ;
+  margin-left: 15px;
+  border: 2px solid #000000;
+  border-radius: 5px;
 }

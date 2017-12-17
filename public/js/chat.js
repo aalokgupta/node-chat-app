@@ -23,25 +23,29 @@ var username = null;
     var ol = jQuery('#ol-received-message');
     var newMessage = ol.children('li:last-child');
     var clientHeight = ol.prop('clientHeight');
-
-    console.log("clientHeight = "+clientHeight);
     var scrollTop =  ol.prop('scrollTop');
-    console.log("scrollTop = "+scrollTop);
     var scrollHeight = ol.prop('scrollHeight');
-    console.log("scrollHeight = "+scrollHeight);
 
     if(newMessage !== undefined) {
       var newMessageHeight = newMessage.innerHeight();
-      console.log("newMessageHeight = "+newMessageHeight);
-      var lastMessageHeight = 5; //newMessageHeight.prev().innerHeight();
-      console.log("lastMessageHeight = "+lastMessageHeight);
+      var lastMessageHeight = 5; //newMessageHeight.prev().innerHeight()
     }
 
     if(clientHeight + scrollTop + 74 >= scrollHeight) {
-      console.log("should scroll");
       ol.scrollTop(scrollHeight);
     }
   }
+
+  socket.on('updateUserList', function(users){
+    console.log("users = "+users.length);
+    document.getElementById('ol-users').innerHTML = '';
+    jQuery('#ol-users').empty();
+    for(var user in users) {
+      var li = jQuery('<li class = "li-user"></li>');
+      li.text(users[user]);
+      jQuery('#ol-users').append(li);
+    }
+  });
 
   socket.on('newMessage', function(message){
     var formatedTime = moment(message.createdAt).format('h::mm a');
