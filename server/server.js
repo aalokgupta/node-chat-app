@@ -22,45 +22,38 @@ io.on('connection', (socket) => {
     if(!isValidString(params.username) || !isValidString(params.chatroom)){
       return callback("Either of username or chat room name is not valid");
     }
-    //
-    // if(!hash.hasOwnProperty(params.chatroom)) {
-    //   var obj = [];
-    //   obj.push(socket.id);
-    //   hash[params.chatroom] = obj;
-    //   console.log("hash = "+JSON.stringify(hash, undefined, 2));
-    // }
-    // else {
-    //   hash[params.chatroom].push(socket.id);
-    //   console.log("hash = "+JSON.stringify(hash, undefined, 2));
-    // }
 
     socket.join(params.chatroom);
     users.removeUser(users.findUser(socket.id));
     users.addUser(socket.id, params.username, params.chatroom);
+    //sent to only new connected user
     socket.emit("newMessage", generateMessage('Admin', `Welcome to chat app ${params.username}`));
+    //send to all connected user of chat room except the user who sent the message
     socket.broadcast.to(params.chatroom).emit('newMessage', generateMessage('admin', `${params.username} joined`));
+    //send the message to all connected user of chat room
     io.to(params.chatroom).emit('updateUserList', users.getUserList(params.chatroom));
     callback();
   });
 
   socket.on('createMessage', function(message, callback){
-    console.log("id =  "+socket.id);
-    console.log("room =  "+Object.keys(socket.rooms));
-    var room = Object.keys(socket.rooms).toString();
-    room = room.split(',')[1];
-    // hash[room].each(socket in sockets) {
-      io.to(room).emit('newMessage', generateMessage(message.from, message.text));
+    // console.log("id =  "+socket.id);
+    // console.log("room =  "+Object.keys(socket.rooms));
+    // var room = Object.keys(socket.rooms).toString();
+    // room = room.split(',')[1];
+    var user = users.findUser(socket.id);
+    if(user && message.text.length > 0) {
+      io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
       callback("message received from server");
-    // }
-
-    //sent message to all user
-
+    }
   });
 
   socket.on('geoLocation', function(message, callback){
     var location = message.coords.latitude + ', ' + message.coords.longitude;
-    io.emit('locationMessage', generateLocationMessage(message.from, message.coords.latitude, message.coords.longitude));
-    callback('location msg received from server');
+    var user = users.findUser(socket.id);
+    if(user) {
+      io.to(user.room).emit('locationMessage', generateLocationMessage(user.name, message.coords.latitude, message.coords.longitude));
+      callback('location msg received from server');
+    }
   });
 
 
